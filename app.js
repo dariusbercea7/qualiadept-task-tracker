@@ -1,23 +1,45 @@
-const listaTaskuri = [
-  { id: 1001, nume: "Setare Boilerplate HTML", completat: true },
-  { id: 1002, nume: "Înțelegere Arhitectură Client-Server", completat: false }
-];
+const formular = document.querySelector("#add-task-form");
+const inputTask = document.querySelector("#task-name");
+const tabelTaskuri = document.querySelector("#history-table tbody");
 
+formular.addEventListener("submit", function(event) {
+    event.preventDefault();
+    const numeTask = inputTask.value;
+    if (numeTask === "") {
+        return;
+    }
+    const randNou = document.createElement("tr");
 
-const proceseazaTaskNou = (taskObj) => {
-  if (taskObj.nume === "" || taskObj.nume === undefined) {
-    console.log("Eroare: Task-ul trebuie să aibă un nume!");
-  } else {
-    listaTaskuri.push(taskObj);
-    console.log("Task adăugat cu succes!");
-  }
-};
+    const Id = document.createElement("td");
+    const Nume = document.createElement("td");
+    const Data = document.createElement("td");
+    const Actiuni = document.createElement("td");
 
-proceseazaTaskNou({ id: 1003, nume: "", completat: false }); 
-proceseazaTaskNou({ id: 1004, nume: "Scrie primul test Playwright", completat: false }); 
+  
+    Id.textContent = "#1004";
+    Nume.textContent = numeTask;
+    Data.textContent = "—";
 
-console.log("--- Raport Task-uri ---");
-for (let i = 0; i < listaTaskuri.length; i++) {
-  console.log("Task-ul " + listaTaskuri[i].id + ": " + listaTaskuri[i].nume);
-}
+   
+    const butonStergere = document.createElement("button");
+    butonStergere.textContent = "Sterge";
+    butonStergere.classList.add("delete-row");
+
+    
+   butonStergere.addEventListener("click", function(event) {
+    event.target.closest("tr").remove();
+});
+    
+    Actiuni.appendChild(butonStergere);
+
+    
+    randNou.appendChild(Id);
+    randNou.appendChild(Nume);
+    randNou.appendChild(Data);
+    randNou.appendChild(Actiuni);
+    tabelTaskuri.appendChild(randNou);
+
+    inputTask.value = "";
+});
+
 
