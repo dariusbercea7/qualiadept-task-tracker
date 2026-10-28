@@ -1,45 +1,40 @@
-const formular = document.querySelector("#add-task-form");
-const inputTask = document.querySelector("#task-name");
-const tabelTaskuri = document.querySelector("#history-table tbody");
+const incarcaTaskuriInitiale = async () => {
+    const listaTaskuri = document.querySelector('#active-tasks-list');
+    const mesajLoading = document.querySelector('#loading-msg');
 
-formular.addEventListener("submit", function(event) {
-    event.preventDefault();
-    const numeTask = inputTask.value;
-    if (numeTask === "") {
-        return;
+    if (mesajLoading) {
+        mesajLoading.style.display = 'block';
     }
-    const randNou = document.createElement("tr");
 
-    const Id = document.createElement("td");
-    const Nume = document.createElement("td");
-    const Data = document.createElement("td");
-    const Actiuni = document.createElement("td");
+    try {
+        const raspuns = await fetch(
+            'https://jsonplaceholder.typicode.com/todos?_limit=5'
+        );
 
-  
-    Id.textContent = "#1004";
-    Nume.textContent = numeTask;
-    Data.textContent = "—";
+        if (!raspuns.ok) {
+            throw new Error('Eroare de server!');
+        }
 
-   
-    const butonStergere = document.createElement("button");
-    butonStergere.textContent = "Sterge";
-    butonStergere.classList.add("delete-row");
+        const taskuriDeLaServer = await raspuns.json();
 
-    
-   butonStergere.addEventListener("click", function(event) {
-    event.target.closest("tr").remove();
-});
-    
-    Actiuni.appendChild(butonStergere);
+        for (let i = 0; i < taskuriDeLaServer.length; i++) {
+            const liNou = document.createElement('li');
+            liNou.textContent = taskuriDeLaServer[i].title;
+            listaTaskuri.appendChild(liNou);
+        }
 
-    
-    randNou.appendChild(Id);
-    randNou.appendChild(Nume);
-    randNou.appendChild(Data);
-    randNou.appendChild(Actiuni);
-    tabelTaskuri.appendChild(randNou);
+    } catch (eroare) {
+        console.error('A apărut o eroare:', eroare);
 
-    inputTask.value = "";
-});
+        listaTaskuri.innerHTML =
+            '<li style="color: red; font-weight: bold;">Eroare critică de rețea. Nu am putut încărca datele.</li>';
 
+    } finally {
+        if (mesajLoading) {
+            mesajLoading.style.display = 'none';
+        }
+    }
+};
+
+incarcaTaskuriInitiale();
 
