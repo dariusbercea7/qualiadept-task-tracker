@@ -1,115 +1,55 @@
-<!DOCTYPE html>  
-<htmljust="ro"> 
-    
-    <head> 
-        
-        <meta charset="UTF-8">
-        <title>My QA App</title>
-         <title>Task Tracker</title>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Task Tracker Pro</title>
+    <!-- Pregătim legătura pentru CSS-ul din Capitolul 2 -->
     <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Antetul Aplicației -->
+    <header class="navbar">
+        <h1 id="logo">QA Task Tracker</h1>
+        <div class="user-controls">
+            <span id="network-status" class="status-indicator online">API Online</span>
+        </div>
+    </header>
 
-    </head>
-    
-    <body> 
-<header>
-        <nav class="navbar">
-        <div id="logo">QualiAdept</div>
-        <button type="button" id="login" data-testid="btn-login">
-            Login
-        </button>
-    </nav>
-    
-    <h1>Task Tracker Pro - QA Edition</h1>
-    <p>Platforma completă de exersare a automatizării</p>
-
-
-</header>
-
-    <main>
+    <!-- Containerul principal unde vom pune restul aplicației -->
+    <main class="container">
         <!-- Secțiunea de adăugare task -->
-        <section class="task-input-section">
-            <h2>Adaugă un Task Nou</h2>
+        <section class="card input-section">
+            <h2>Adaugă un Scenariu Nou</h2>
             <form id="add-task-form">
-                <label for="task-name">Nume Task:</label>
-                <input type="text" id="task-name" data-testid="input-task-name" placeholder="Ex: Scrie scenarii E2E" required>
-
-                <label for="task-priority">Prioritate:</label>
-                <select id="task-priority" data-testid="select-priority">
-                    <option value="low">Scăzută</option>
-                    <option value="medium" selected>Medie</option>
-                    <option value="high">Critică</option>
-                </select>
-
-                <label for="due-date">Termen limită:</label>
-                <input type="date" id="due-date" data-testid="input-due-date">
-
-                <button type="submit" id="add-task-btn" data-testid="submit-new-task">Salvează Task</button>
-<button disabled type="submit" id="add-task-btn" data-testid="submit-task-btn">  Salvează Task</button>
-
+                <div class="input-group">
+                    <!-- Câmpul de text cu hook pentru Playwright -->
+                    <input type="text" id="task-name" placeholder="ex: Testare validare login..." data-testid="input-task-name">
+                    
+                    <!-- Butonul pornește dezactivat pentru a forța utilizatorul să scrie text -->
+                    <button type="submit" id="submit-task-btn" data-testid="submit-task-btn" disabled>Salvează</button>
+                </div>
+                
+                <!-- Mesaj de eroare ascuns implicit (îl vom activa din JS) -->
+                <small id="error-msg" class="error-text" style="display: none;" data-testid="error-message">Numele task-ului nu poate fi gol!</small>
             </form>
         </section>
-
-        <!-- Secțiunea de afișare task-uri (Tip Listă) -->
-        <section class="task-list-section">
-            <h2>Task-uri Active</h2>
-            <ul id="active-tasks-list">
-                <li class="task-item" data-task-status="pending">
-                    <input type="checkbox" class="complete-checkbox" data-testid="check-task-1">
-                    <span>Învață arhitectura DOM</span>
-                    <span class="badge priority-high">Critică</span>
-                    <button class="delete-btn" data-testid="delete-task-1">Șterge</button>
-                </li>
+         <!-- Secțiunea de listare task-uri -->
+        <section class="card list-section">
+            <h2>Scenarii de Testare (Live)</h2>
+            
+            <!-- Element vizual pentru Latența Asincronă -->
+            <div id="loading-spinner" class="spinner" data-testid="loading-spinner">Se încarcă datele de la server...</div>
+            
+            <!-- Lista goală: va fi populată de JavaScript în Capitolul 3 -->
+            <ul id="task-list" class="task-list" data-testid="task-list">
+                <!-- Rândurile (<li>) vor fi injectate aici de JavaScript -->
             </ul>
         </section>
-
-<!-- Secțiunea de istoric (Tip Tabel) -->
-<section class="task-history-section">
-    <h2>Istoric Task-uri Finalizate</h2>
-
-    <table id="history-table" border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nume Task</th>
-                <th>Data Finalizării</th>
-                <th>Acțiuni</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <tr>
-                <td>#1001</td>
-                <td>Setare Boilerplate HTML</td>
-                <td>09-Aug-2026</td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td>#1002</td>
-                <td>Adăugare Logo</td>
-                <td>09-Oct-2026</td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td>#1003</td>
-                <td>Adăugare Login</td>
-                <td>10-Oct-2026</td>
-                <td>
-                    <button class="delete-row">Șterge</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
+        
     </main>
 
-    <footer>
-        <p>(c) 2026 QualiAdept Bootcamp</p>
-    </footer>
-
-
-      <script src="app.js"></script>
+    <!-- Pregătim legătura pentru Logica din Capitolul 3 -->
+    <script src="app.js"></script>
 </body>
-
 </html>
