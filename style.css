@@ -148,3 +148,203 @@ header {
 #history-table tbody tr:nth-child(even) {
     background-color: #f1f5f9;
 }
+
+/* ============================================================
+ * Task Tracker Pro - Stiluri Capstone (Sesiunea 6)
+ * ============================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2c3e50;
+  color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.status-indicator {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.status-indicator.online {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+}
+
+#task-name {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+button:hover:not(:disabled) {
+  background-color: #2980b9;
+}
+
+button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.error-text {
+  color: #e74c3c;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+.spinner {
+  padding: 1rem;
+  background-color: #fcf3cf;
+  color: #7d6608;
+  border-radius: 4px;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.task-list {
+  list-style: none;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+.task-item:hover {
+  background-color: #f9f9f9;
+}
+
+.task-title {
+  cursor: pointer;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+.btn-delete:hover:not(:disabled) {
+  background-color: #c0392b;
+}
+
+/* ============================================================
+ * Cerința Task 2: Stil pentru Task-uri Finalizate (.completed)
+ * Adaugă stilul pentru clasa .completed cu tăierea textului (efect line-through)
+ * ============================================================ */
+/* TODO Task 2: Scrie regula pentru clasa de finalizare aici */
+
+/* ============================================================
+ * Modul Chaos: Overlay & Pop-up Promoțional
+ * ============================================================ */
+.overlay-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(3px);
+}
+
+.promo-box {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  max-width: 400px;
+}
+
+.promo-box h3 {
+  color: #e74c3c;
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+
+.promo-box p {
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.btn-close-promo {
+  background-color: #2c3e50;
+  color: white;
+  width: 100%;
+}
+
+.btn-close-promo:hover:not(:disabled) {
+  background-color: #1a252f;
+}
+.completed {
+    text-decoration: line-through;
+    color: #95a5a6; /* Un gri deschis */
+}
